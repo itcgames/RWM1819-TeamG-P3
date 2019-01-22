@@ -34,9 +34,12 @@ class MenuManager
   {
     ctx.clearRect(0,0, ctx.canvas.width, ctx.canvas.height);
 
+    ctx.fillStyle = "#FF0000";
+    ctx.fillRect(0,0, ctx.canvas.width, ctx.canvas.height);
+
     if(this.current !== undefined)
     {
-      this.current.draw();
+      this.current.render(ctx);
     }
     else
     {
@@ -58,7 +61,7 @@ class MenuManager
     }
   }
 
-  etCurrentScene(name)
+  setCurrentScene(name)
   {
     if(this.scenes.has(name))
     {

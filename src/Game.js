@@ -25,6 +25,14 @@
    {
      this.canvas = null;
      this.context = null;
+
+     gameGlobal.menuManager = new MenuManager();
+
+     gameGlobal.menuManager.addScene("Licence", new Licence());
+     gameGlobal.menuManager.addScene("Main Menu", new MainMenu());
+
+
+     gameGlobal.menuManager.setCurrentScene("Main Menu");
    }
 
    /*
@@ -47,6 +55,8 @@
     */
    update()
    {
+     gameGlobal.menuManager.update();
+
      gameGlobal.game.draw();
 
      window.requestAnimationFrame(gameGlobal.game.update);
@@ -57,7 +67,8 @@
     */
    draw()
    {
-     this.context.clearRect(0, 0, gameGlobal.game.canvas.width, gameGlobal.game.canvas.height);
+     gameGlobal.menuManager.draw(gameGlobal.game.context);
+     //this.context.clearRect(0, 0, gameGlobal.game.canvas.width, gameGlobal.game.canvas.height);
    }
 
  }
