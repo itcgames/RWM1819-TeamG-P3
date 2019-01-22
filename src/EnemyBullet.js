@@ -8,7 +8,7 @@
  //
  // C00204076
  // Brandon Seah-Dempsey
- // Started at 15:56 21 January 2019
+ // Started at 9:21 22 January 2019
  // Finished at
  // Time taken:
  // Known bugs:
@@ -37,7 +37,7 @@
      this.speed = 0;
      this.angle = 0.0;
      this.gravity = 0.5;
-     this.bounceFactor = 0.8;
+     this.bounceFactor = 1.0;
      //
      this.texture = texture;
      //
@@ -46,6 +46,8 @@
      this.applyVel = false;
      this.applyGrav = false;
      this.applyBoun = false;
+     //
+     this.active = true;
      //
      this.setValues();
 
@@ -58,9 +60,12 @@
    {
      var that = this;
 
-     this.applyVelocity(that, this.speed, this.angle, this.velX, this.velY, this.x, this.y, this.applyVel);
-     this.applyGravity(that, this.velY, this.y, this.gravity, this.applyGrav);
-     this.applyBounce(that, this.velX, this.velY, this.x, this.y, this.applyBoun, this.bounceFactor);
+     if(this.active === true)
+     {
+       this.applyVelocity(that, this.speed, this.angle, this.velX, this.velY, this.x, this.y, this.applyVel);
+       this.applyGravity(that, this.velY, this.y, this.gravity, this.applyGrav);
+       this.applyBounce(that, this.velX, this.velY, this.x, this.y, this.applyBoun, this.bounceFactor);
+     }
    }
 
    /*
@@ -68,7 +73,10 @@
     */
    draw()
    {
-     this.context.drawImage(this.texture, this.x, this.y, this.texture.width, this.texture.height);
+     if(this.active === true)
+     {
+       this.context.drawImage(this.texture, this.x, this.y, this.texture.width, this.texture.height);
+     }
    }
 
    /*
@@ -157,7 +165,7 @@
        this.x = 860;
        this.y = 225;
        //
-       this.velX = -5;
+       this.velX = -8;
        this.velY = -9;
        //
        this.applyVel = true;
@@ -165,9 +173,23 @@
        this.applyBoun = true;
      }
      //
-     else if (this.type === 3)
+     else if (this.type === 4)
      {
-
+       this.x = 600;
+       this.y = 250;
      }
+   }
+
+   /*
+    *
+    */
+   respawnBullet(x, y, active, type)
+   {
+     this.x = x;
+     this.y = y;
+     this.active = active;
+     this.type = type;
+
+     this.setValues();
    }
  }

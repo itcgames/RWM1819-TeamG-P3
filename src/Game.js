@@ -26,8 +26,13 @@
      this.canvas = null;
      this.context = null;
 
-     this.projectile;
-
+     //
+     this.bullet = new PlayerBullet();
+     this.projectile = new EnemyBullet();
+     //
+     this.bulletImg = new Image();
+     this.bulletImg.src = "resources/images/PBullet.png"
+     //
      this.projectileImgOne = new Image();
      this.projectileImgOne.src = "resources/images/Bullet.png"
    }
@@ -42,6 +47,7 @@
      this.canvas = document.getElementById("canvas");
      this.context = this.canvas.getContext("2d");
 
+     this.bullet = new PlayerBullet(this.canvas, this.context, this.bulletImg, 50, 250, 12);
      this.projectile = new EnemyBullet(this.canvas, this.context, this.projectileImgOne, 3);
 
 
@@ -54,9 +60,13 @@
     */
    update()
    {
+     var that = this;
+
      gameGlobal.game.draw();
 
+     gameGlobal.game.bullet.update();
      gameGlobal.game.projectile.update();
+     gameGlobal.game.bullet.enemyBulletCollision(gameGlobal.game.projectile);
 
      window.requestAnimationFrame(gameGlobal.game.update);
    }
@@ -68,6 +78,7 @@
    {
      this.context.clearRect(0, 0, gameGlobal.game.canvas.width, gameGlobal.game.canvas.height);
 
+     gameGlobal.game.bullet.draw();
      gameGlobal.game.projectile.draw();
    }
 
