@@ -68,7 +68,6 @@
    draw()
    {
      gameGlobal.menuManager.draw(gameGlobal.game.context);
-     //this.context.clearRect(0, 0, gameGlobal.game.canvas.width, gameGlobal.game.canvas.height);
    }
 
  }
