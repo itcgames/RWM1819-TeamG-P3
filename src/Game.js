@@ -32,7 +32,7 @@
      gameGlobal.menuManager.addScene("Main Menu", new MainMenu());
 
 
-     gameGlobal.menuManager.setCurrentScene("Main Menu");
+     gameGlobal.menuManager.setCurrentScene("Licence");
    }
 
    /*

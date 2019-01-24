@@ -9,11 +9,12 @@ class MainMenu extends Scene
     this.options = new Image();
     this.exit = new Image();
 
-    this.play.src = "resources/play_placeholder.png";
-    this.howToPlay.src = "resources/help_placeholder.png";
-    this.tutorial.src = "resources/Tutorial_placeholder.png";
-    this.options.src = "resources/settings_placeholder.png";
-    this.exit.src = "resources/quit_placeholder.png";
+    this.play.src = "resources/play_button.png";
+    this.howToPlay.src = "resources/Help.png";
+    this.tutorial.src = "resources/Tutorial.png";
+    this.options.src = "resources/Options.png";
+    this.exit.src = "resources/Exit.png";
+    document.addEventListener("click", this.onClick.bind(this));
   }
 
   update()
@@ -28,8 +29,24 @@ class MainMenu extends Scene
     ctx.drawImage(this.tutorial, 300, 400, 200, 100);
     ctx.drawImage(this.options, 300, 550, 200, 100);
     ctx.drawImage(this.exit, 300, 700, 200, 100);
+  }
 
-    console.log("rendering main menu");
+  onClick(e)
+  {
+    console.log(e.clientX + ", " + e.clientY);
+    //this.checkCollisionBetween(300, 50, 300, 100)
+  }
 
+
+  checkCollisionBetween(x,y,width,height)
+    {
+     var collides = false;
+     if ((this.startingPosition[0] < x + width) &&
+       (this.startingPosition[0] > x) &&
+       (this.startingPosition[1] < y + height) &&
+       (this.startingPosition[1] > y)){
+         collides = true;
+       }
+     return collides;
   }
 }
