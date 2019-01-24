@@ -27,7 +27,6 @@
      this.context = null;
 
      gameGlobal.menuManager = new MenuManager();
-     gameGlobal.clickDetection = new ClickDetection();
 
      gameGlobal.menuManager.addScene("Licence", new Licence());
      gameGlobal.menuManager.addScene("Main Menu", new MainMenu());

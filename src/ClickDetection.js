@@ -2,17 +2,17 @@ class ClickDetection
 {
   constructor()
   {
-    document.addEventListener("click", this.click.bind(this));
+    document.addEventListener("click", this.onClick.bind(this));
 
-    this.x;
-    this.y;
+    this.posX;
+    this.posY;
     this.clicked = false;
   }
 
-  click(e)
+  onClick(e)
   {
-    this.x = e.clientX;
-    this.y = e.clientY;
+    this.posX = e.clientX;
+    this.posY = e.clientY;
 
     this.clicked = true;
   }
@@ -20,13 +20,13 @@ class ClickDetection
   reset()
   {
     this.clicked = false;
-    this.x = undefined;
-    this.y = undefined;
+    this.posX = undefined;
+    this.posY = undefined;
   }
 
   getPosition()
   {
-    return [this.x, this.y];
+    return [this.posX, this.posY];
   }
 
   isClicked()

@@ -5,15 +5,16 @@ class Help
     this.mainMenu = new Image();
 
     this.mainMenu.src = "resources/play_button.png";
+    this.clickDetection = new ClickDetection();
   }
 
   update()
   {
-    if(gameGlobal.clickDetection.isClicked())
+    if(this.clickDetection.isClicked())
     {
-      if(this.checkCollisionBetween(gameGlobal.clickDetection.getPosition(), 300, 250, 200, 100));
+      if(this.checkCollisionBetween(this.clickDetection.getPosition(), 500,800,200,100))
       {
-        gameGlobal.clickDetection.reset();
+        this.clickDetection.reset();
         gameGlobal.menuManager.setCurrentScene("Main Menu");
       }
     }
