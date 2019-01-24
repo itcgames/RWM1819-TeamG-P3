@@ -37,7 +37,7 @@
      this.speed = 0;
      this.angle = 0.0;
      this.gravity = 0.5;
-     this.bounceFactor = 1.0;
+     this.bounceFactor = 0.9;
      //
      this.texture = texture;
      //
@@ -97,6 +97,7 @@
 
        //console.log(that.x);
      }
+
    }
 
    /*
@@ -118,7 +119,7 @@
    {
      if(that.applyBoun === true)
      {
-       if(that.y >= 500)
+       if(that.y >= 630)
        {
          that.velY *= -that.bounceFactor;
        }
@@ -134,7 +135,7 @@
      if(this.type === 1)
      {
        //
-       this.x = 860;
+       this.x = 1960;
        this.y = 200;
        //
        this.velX = -5;
@@ -162,7 +163,7 @@
      else if (this.type === 3)
      {
        //
-       this.x = 860;
+       this.x = 1960;
        this.y = 225;
        //
        this.velX = -8;

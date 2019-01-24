@@ -27,14 +27,26 @@
      this.context = null;
 
      //
-     this.bullet = new PlayerBullet();
+     this.player = new Player();
      this.projectile = new EnemyBullet();
+     this.obstacle = new Obstacle();
+     //
+     this.playerImg = new Image();
+     this.playerImg.src = "resources/images/Player.png";
      //
      this.bulletImg = new Image();
-     this.bulletImg.src = "resources/images/PBullet.png"
+     this.bulletImg.src = "resources/images/PBullet.png";
      //
      this.projectileImgOne = new Image();
-     this.projectileImgOne.src = "resources/images/Bullet.png"
+     this.projectileImgOne.src = "resources/images/Bullet.png";
+     //
+     this.obstacleImgOne = new Image();
+     this.obstacleImgOne.src = "resources/images/Cactus.png"
+     //
+     this.obstacleImgTwo = new Image();
+     this.obstacleImgTwo.src = "resources/images/Chest.png"
+     //
+     this.gameEvent = 1;
    }
 
    /*
@@ -47,8 +59,10 @@
      this.canvas = document.getElementById("canvas");
      this.context = this.canvas.getContext("2d");
 
-     this.bullet = new PlayerBullet(this.canvas, this.context, this.bulletImg, 50, 250, 12);
+
      this.projectile = new EnemyBullet(this.canvas, this.context, this.projectileImgOne, 3);
+     this.obstacle = new Obstacle(this.canvas, this.context, this.obstacleImgOne, 1);
+     this.player = new Player(this.canvas, this.context, this.playerImg, this.bulletImg, this.projectile, this.obstacle);
 
 
      console.log("Initialising game world");
@@ -63,10 +77,10 @@
      var that = this;
 
      gameGlobal.game.draw();
-
-     gameGlobal.game.bullet.update();
      gameGlobal.game.projectile.update();
-     gameGlobal.game.bullet.enemyBulletCollision(gameGlobal.game.projectile);
+     gameGlobal.game.player.update();
+     gameGlobal.game.obstacle.update();
+
 
      window.requestAnimationFrame(gameGlobal.game.update);
    }
@@ -78,8 +92,9 @@
    {
      this.context.clearRect(0, 0, gameGlobal.game.canvas.width, gameGlobal.game.canvas.height);
 
-     gameGlobal.game.bullet.draw();
+     gameGlobal.game.player.draw();
      gameGlobal.game.projectile.draw();
+     gameGlobal.game.obstacle.draw();
    }
 
  }

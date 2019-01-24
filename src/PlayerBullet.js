@@ -38,7 +38,7 @@
      //
      this.texture = texture;
      //
-     this.active = true;
+     this.active = false;
    }
 
    /*
@@ -77,6 +77,11 @@
 
        that.x += that.velX;
        that.y += that.velY;
+
+       if(that.x >= 1950)
+       {
+         that.active = false;
+       }
      }
    }
 
@@ -91,7 +96,7 @@
        if(this.x < bullet.x + bullet.texture.width &&
          this.x + this.texture.width > bullet.x &&
          this.y < bullet.y + bullet.texture.height &&
-         this.y + this.texture.height > this.y)
+         this.y + this.texture.height > bullet.y)
        {
          this.active = false;
          bullet.active = false;
