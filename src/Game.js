@@ -32,6 +32,7 @@
      gameGlobal.menuManager.addScene("Main Menu", new MainMenu());
      gameGlobal.menuManager.addScene("Help", new Help());
      gameGlobal.menuManager.addScene("Tutorial", new Tutorial());
+     gameGlobal.menuManager.addScene("Options", new Options);
 
      gameGlobal.menuManager.setCurrentScene("Main Menu");
    }
