@@ -26,6 +26,15 @@
      this.canvas = null;
      this.context = null;
 
+     gameGlobal.menuManager = new MenuManager();
+
+     gameGlobal.menuManager.addScene("Licence", new Licence());
+     gameGlobal.menuManager.addScene("Main Menu", new MainMenu());
+     gameGlobal.menuManager.addScene("Help", new Help());
+     gameGlobal.menuManager.addScene("Tutorial", new Tutorial());
+     gameGlobal.menuManager.addScene("Options", new Options);
+
+     gameGlobal.menuManager.setCurrentScene("Main Menu");
      //
      this.player = new Player();
      this.projectile = new EnemyBullet();
@@ -74,7 +83,10 @@
     */
    update()
    {
+     gameGlobal.menuManager.update();
+
      var that = this;
+
 
      gameGlobal.game.draw();
      gameGlobal.game.projectile.update();
@@ -90,11 +102,14 @@
     */
    draw()
    {
+     gameGlobal.menuManager.draw(gameGlobal.game.context);
+
      this.context.clearRect(0, 0, gameGlobal.game.canvas.width, gameGlobal.game.canvas.height);
 
      gameGlobal.game.player.draw();
      gameGlobal.game.projectile.draw();
      gameGlobal.game.obstacle.draw();
+
    }
 
  }
