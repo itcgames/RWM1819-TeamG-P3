@@ -27,12 +27,14 @@
      this.context = null;
 
      gameGlobal.menuManager = new MenuManager();
+     gameGlobal.clickDetection = new ClickDetection();
 
      gameGlobal.menuManager.addScene("Licence", new Licence());
      gameGlobal.menuManager.addScene("Main Menu", new MainMenu());
+     gameGlobal.menuManager.addScene("Help", new Help());
 
 
-     gameGlobal.menuManager.setCurrentScene("Licence");
+     gameGlobal.menuManager.setCurrentScene("Main Menu");
    }
 
    /*

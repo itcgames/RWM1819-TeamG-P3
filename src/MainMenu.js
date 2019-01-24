@@ -14,12 +14,18 @@ class MainMenu extends Scene
     this.tutorial.src = "resources/Tutorial.png";
     this.options.src = "resources/Options.png";
     this.exit.src = "resources/Exit.png";
-    document.addEventListener("click", this.onClick.bind(this));
   }
 
   update()
   {
-
+    if(gameGlobal.clickDetection.isClicked())
+    {
+      if(this.checkCollisionBetween(gameGlobal.clickDetection.getPosition(), 300, 250, 200, 100));
+      {
+        gameGlobal.clickDetection.reset();
+        gameGlobal.menuManager.setCurrentScene("Help");
+      }
+    }
   }
 
   render(ctx)
@@ -31,22 +37,16 @@ class MainMenu extends Scene
     ctx.drawImage(this.exit, 300, 700, 200, 100);
   }
 
-  onClick(e)
+  checkCollisionBetween(clickPos, x,y,width,height)
   {
-    console.log(e.clientX + ", " + e.clientY);
-    //this.checkCollisionBetween(300, 50, 300, 100)
-  }
+    var collides = false;
+    if ((clickPos[0] < x + width) &&
+     (clickPos[0] > x) &&
+     (clickPos[1] < y + height) &&
+     (clickPos[1] > y)){
+       collides = true;
+     }
 
-
-  checkCollisionBetween(x,y,width,height)
-    {
-     var collides = false;
-     if ((this.startingPosition[0] < x + width) &&
-       (this.startingPosition[0] > x) &&
-       (this.startingPosition[1] < y + height) &&
-       (this.startingPosition[1] > y)){
-         collides = true;
-       }
      return collides;
   }
 }
