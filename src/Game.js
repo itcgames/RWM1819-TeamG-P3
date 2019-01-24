@@ -31,7 +31,7 @@
      gameGlobal.menuManager.addScene("Licence", new Licence());
      gameGlobal.menuManager.addScene("Main Menu", new MainMenu());
      gameGlobal.menuManager.addScene("Help", new Help());
-
+     gameGlobal.menuManager.addScene("Tutorial", new Tutorial());
 
      gameGlobal.menuManager.setCurrentScene("Main Menu");
    }

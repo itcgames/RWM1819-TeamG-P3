@@ -1,8 +1,7 @@
-class MainMenu extends Scene
+class MainMenu
 {
   constructor()
   {
-    super();
     this.play = new Image();
     this.howToPlay = new Image();
     this.tutorial = new Image();
@@ -14,7 +13,6 @@ class MainMenu extends Scene
     this.tutorial.src = "resources/Tutorial.png";
     this.options.src = "resources/Options.png";
     this.exit.src = "resources/Exit.png";
-    this.collides = false;
 
     this.clickDetection = new ClickDetection();
   }
@@ -25,10 +23,14 @@ class MainMenu extends Scene
     {
       if(this.checkCollisionBetween(this.clickDetection.getPosition(), 650, 250, 200,100))
       {
-        this.clickDetection.reset();
         gameGlobal.menuManager.setCurrentScene("Help");
-
       }
+      if(this.checkCollisionBetween(this.clickDetection.getPosition(), 650, 400, 200,100))
+      {
+        gameGlobal.menuManager.setCurrentScene("Tutorial");
+      }
+
+      this.clickDetection.reset();
     }
 
   }

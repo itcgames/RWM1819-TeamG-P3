@@ -1,9 +1,7 @@
-class Licence extends Scene
+class Licence
 {
   constructor()
   {
-    super();
-
     this.count = 0;
     this.image = new Image();
 
