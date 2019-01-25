@@ -28,7 +28,6 @@
 
      //
      this.player = new Player();
-     this.projectile = new EnemyBullet();
      //
      this.arrow = new EnemyBullet();
      this.tomahawk = new EnemyBullet();
@@ -73,8 +72,6 @@
      this.bulletAttack = 1;
      this.eventTime = 0;
 
-
-     this.projectile = new EnemyBullet(this.canvas, this.context, this.projectileImgOne, 3);
      //
      this.arrow = new EnemyBullet(this.canvas, this.context, this.projectileImgOne, 1);
      this.tomahawk = new EnemyBullet(this.canvas, this.context, this.projectileImgOne, 2);
@@ -108,7 +105,7 @@
      gameGlobal.game.draw();
      //gameGlobal.game.projectiles[2].update();
      gameGlobal.game.player.update();
-     gameGlobal.game.obstacle.update();
+     //gameGlobal.game.obstacle.update();
 
      // One arrow Event
      if(gameGlobal.game.bulletAttack === 1)
@@ -131,13 +128,37 @@
        gameGlobal.game.projectiles[0].update();
        gameGlobal.game.projectiles[2].update();
      }
+     // One cactus Event
+     if(gameGlobal.game.bulletAttack === 5)
+     {
+       gameGlobal.game.obstacles[0].update();
+     }
+     // One chest Event
+     if(gameGlobal.game.bulletAttack === 6)
+     {
+       gameGlobal.game.obstacles[1].update();
+     }
 
      gameGlobal.game.eventTime++;
-     console.log(gameGlobal.game.eventTime);
+     //console.log(gameGlobal.game.eventTime);
 
-     if(gameGlobal.game.eventTime >= 490)
+     //
+     if(gameGlobal.game.eventTime >= 480)
      {
-       gameGlobal.game.gameEvent = Math.floor((Math.random() * 4) + 1);
+       gameGlobal.game.bulletAttack = Math.floor((Math.random() * 6) + 1);
+
+       //
+       for(var i = 0; i < 4; i++)
+       {
+         gameGlobal.game.projectiles[i].setValues();
+       }
+
+       //
+       for(var i = 0; i < 2; i++)
+       {
+         gameGlobal.game.obstacles[i].setValues();
+       }
+
        gameGlobal.game.eventTime = 0;
      }
 
@@ -152,7 +173,6 @@
      this.context.clearRect(0, 0, gameGlobal.game.canvas.width, gameGlobal.game.canvas.height);
 
      gameGlobal.game.player.draw();
-     //gameGlobal.game.projectiles[2].draw();
 
      //
      for(var i = 0; i < 4; i++)
@@ -160,7 +180,11 @@
        gameGlobal.game.projectiles[i].draw();
      }
 
-     gameGlobal.game.obstacle.draw();
+     //
+     for(var i = 0; i < 2; i++)
+     {
+       gameGlobal.game.obstacles[i].draw();
+     }
    }
 
  }
