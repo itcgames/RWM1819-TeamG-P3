@@ -105,10 +105,7 @@
        this.y = 605;
      }
      //
-     else if (this.type === 3)
-     {
-
-     }
+     this.active = true;
    }
 
    /*

@@ -40,7 +40,7 @@ class Play
     this.eventTime = null;
 
     this.bulletAttack = 1;
-    this.eventTime = 0;
+    this.eventTime = 210;
 
     //
     this.arrow = new EnemyBullet(this.projectileImgOne, 1);
@@ -67,12 +67,12 @@ class Play
   this.player.update();
     //gameGlobal.game.obstacle.update();
 
-    // One arrow Event
+    // One tomahawk Event
     if(this.bulletAttack === 1)
     {
       this.projectiles[0].update();
     }
-    // One tomahawk Event
+    // One arrow Event
     if(this.bulletAttack === 2)
     {
       this.projectiles[1].update();
@@ -99,11 +99,16 @@ class Play
       this.obstacles[1].update();
     }
 
-    this.eventTime++;
-    //console.log(gameGlobal.game.eventTime);
+
+
+
+
+
+    this.eventTime--;
+    console.log(this.eventTime);
 
     //
-    if(this.eventTime >= 480)
+    if(this.eventTime <= 0)
     {
       this.bulletAttack = Math.floor((Math.random() * 6) + 1);
 
@@ -114,14 +119,63 @@ class Play
       }
 
       //
-      for(var i = 0; i < 2; i++)
+      for(var j = 0; j < 2; j++)
       {
-        this.obstacles[i].setValues();
+        this.obstacles[j].setValues();
       }
 
-      this.eventTime = 0;
+
+
+      // One tomahawk Event
+      if(this.bulletAttack === 1)
+      {
+        this.eventTime = 210;
+      }
+      // One arrow Event
+      if(this.bulletAttack === 2)
+      {
+        this.eventTime = 210;
+      }
+      // One boulder Event
+      if(this.bulletAttack === 3)
+      {
+        this.eventTime = 250;
+      }
+      // One arrow and boulder Event
+      if(this.bulletAttack === 4)
+      {
+        this.eventTime = 210;
+      }
+      // One cactus Event
+      if(this.bulletAttack === 5)
+      {
+        this.eventTime = 250;
+      }
+      // One chest Event
+      if(this.bulletAttack === 6)
+      {
+        this.eventTime = 250;
+      }
     }
 
+
+    //
+    for(var k = 0; k < 4; k++)
+    {
+      this.player.enemyBulletCollision(this.projectiles[k], this.eventTime);
+      this.player.bullet.enemyBulletCollision(this.projectiles[k], this.eventTime);
+
+      //
+      if(this.player.bullet.enemyBulletCollision(this.projectiles[k], this.eventTime) === true)
+      {
+        this.player.addScore(100);
+      }
+    }
+    //
+    for(var l = 0; l < 2; l++)
+    {
+      this.player.obstacleCollision(this.obstacles[l], this.eventTime);
+    }
   }
 
   render(ctx)
@@ -135,9 +189,9 @@ class Play
     }
 
     //
-    for(var i = 0; i < 2; i++)
+    for(var j = 0; j < 2; j++)
     {
-      this.obstacles[i].draw(ctx);
+      this.obstacles[j].draw(ctx);
     }
   }
 }

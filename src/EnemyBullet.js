@@ -136,7 +136,7 @@
        this.x = 1960;
        this.y = 575;
        //
-       this.velX = -5;
+       this.velX = -10;
        this.velY = 0;
        //
        this.applyVel = true;
@@ -150,7 +150,7 @@
        this.x = -60;
        this.y = 575;
        //
-       this.velX = 5;
+       this.velX = 10;
        this.velY = 0;
        //
        this.applyVel = true;
@@ -185,10 +185,17 @@
        this.applyGrav = true;
        this.applyBoun = true;
      }
+
+     //
+     this.active = true;
    }
 
+   /*
+    *
+    */
    resetBullet()
    {
+     //
      if((this.x <= -60 || this.x >= 2010)|| this.active === false)
      {
        this.setValues();

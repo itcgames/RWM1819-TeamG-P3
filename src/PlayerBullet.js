@@ -85,7 +85,7 @@
    /*
     *
     */
-   enemyBulletCollision(bullet)
+   enemyBulletCollision(bullet, eventTime)
    {
      if(this.active === true && bullet.active === true)
      {
@@ -95,6 +95,7 @@
          this.y < bullet.y + bullet.texture.height &&
          this.y + this.texture.height > bullet.y)
        {
+         eventTime = 0;
          this.active = false;
          bullet.active = false;
        }// End if

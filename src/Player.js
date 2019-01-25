@@ -23,7 +23,7 @@
     */
    constructor(texture, bulletTexture, projectile, obstacle)
    {
-     this.x = 700;
+     this.x = 680;
      this.y = 600;
      //
      this.velY = 0;
@@ -46,6 +46,12 @@
      //
      this.projectile = projectile;
      this.obstacle = obstacle;
+     //
+     this.iFrameTime = 0;
+     //
+     this.invincibilityTime =0;
+     //
+     this.imageType = 1;
    }
 
    /*
@@ -65,16 +71,7 @@
        this.jump(that);
        this.duck(that);
 
-       //
-       if(this.bullet.active === true)
-       {
-         this.bullet.enemyBulletCollision(this.projectile);
-       }
-       //
-       if(this.obstacle.active === true)
-       {
-         this.obstacleCollision(this.obstacle);
-       }
+       this.iFrames();
 
        //
        if(this.hits <= 0)
@@ -161,9 +158,9 @@
      }
    }
 
-   enemyBulletCollision(bullet)
+   enemyBulletCollision(bullet, eventTime)
    {
-     if(this.active === true && bullet.active === true && this.knockeddown === false)
+     if(this.active === true && bullet.active === true && this.knockeddown === false && this.ducking === false)
      {
 
        if(this.x < bullet.x + bullet.texture.width &&
@@ -171,11 +168,11 @@
           this.y < bullet.y + bullet.texture.height &&
           this.y + this.texture.height > bullet.y)
        {
-
-
-         //this.hits -= 1;
+         console.log("Hit!");
+         eventTime = 0;
+         /*this.hits -= 1;
          this.knockeddown = true;
-         bullet.active = false;
+         bullet.active = false;*/
        }// End if
      }// End if
    }
@@ -183,9 +180,9 @@
    /*
     *
     */
-   obstacleCollision(obstacle)
+   obstacleCollision(obstacle, eventTime)
    {
-     if(this.active === true && obstacle.active === true && this.knockeddown === false)
+     if(this.active === true && obstacle.active === true && this.knockeddown === false && this.ducking === false)
      {
 
        if(this.x < obstacle.x + obstacle.texture.width &&
@@ -193,10 +190,11 @@
           this.y < obstacle.y + obstacle.texture.height &&
           this.y + this.texture.height > obstacle.y)
        {
-         //console.log("Collide")
-         //this.hits -= 1;
+         console.log("Collide!")
+         eventTime = 0;
+         /*this.hits -= 1;
          this.knockeddown = true;
-         this.obstacle.collided = true;
+         this.obstacle.collided = true;*/
 
        }// End if
      }// End if
@@ -209,8 +207,37 @@
    {
      if(this.active === true)
      {
+
        ctx.drawImage(this.texture, this.x, this.y, this.texture.width, this.texture.height);
        this.bullet.draw(ctx);
+     }
+
+     ctx.fillStyle = "black";
+     ctx.font = "30px Verdana";
+     ctx.fillText("Score: " + this.score, 50, 780);
+     ctx.fillText("Lives: " + this.hits, 1550, 780);
+   }
+
+   iFrames()
+   {
+     if(this.knockeddown === true)
+     {
+       //
+       this.invincibilityTime++;
+       //
+       this.iFrames++;
+       //
+       if(this.invincibilityTime >= 100)
+       {
+         this.imageType *= -1;
+         this.invincibilityTime =0;
+       }
+       //
+       if(this.iFrames >= 1000)
+       {
+         this.iFrames = 0;
+         this.knockeddown === true;
+       }
      }
    }
 
