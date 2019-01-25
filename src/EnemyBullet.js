@@ -66,6 +66,8 @@
        this.applyGravity(that, this.velY, this.y, this.gravity, this.applyGrav);
        this.applyBounce(that, this.velX, this.velY, this.x, this.y, this.applyBoun, this.bounceFactor);
      }
+
+     this.resetBullet();
    }
 
    /*
@@ -136,7 +138,7 @@
      {
        //
        this.x = 1960;
-       this.y = 200;
+       this.y = 575;
        //
        this.velX = -5;
        this.velY = 0;
@@ -150,7 +152,7 @@
      {
        //
        this.x = -60;
-       this.y = 200;
+       this.y = 575;
        //
        this.velX = 5;
        this.velY = 0;
@@ -163,7 +165,7 @@
      else if (this.type === 3)
      {
        //
-       this.x = 1960;
+       this.x = 1980;
        this.y = 225;
        //
        this.velX = -8;
@@ -176,8 +178,24 @@
      //
      else if (this.type === 4)
      {
-       this.x = 600;
-       this.y = 250;
+       //
+       this.x = 2000;
+       this.y = 190;
+       //
+       this.velX = -8;
+       this.velY = -9;
+       //
+       this.applyVel = true;
+       this.applyGrav = true;
+       this.applyBoun = true;
+     }
+   }
+
+   resetBullet()
+   {
+     if((this.x <= -60 || this.x >= 2010)|| this.active === false)
+     {
+       this.setValues();
      }
    }
 
