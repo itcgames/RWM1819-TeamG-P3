@@ -36,6 +36,8 @@
 
     gameGlobal.menuManager.setCurrentScene("Main Menu");
 
+    gameGlobal.tutorial;
+
    }
 
    /*

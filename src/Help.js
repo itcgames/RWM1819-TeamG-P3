@@ -9,7 +9,7 @@ class Help
     this.duck = new Image;
     this.shoot = new Image;
 
-    this.mainMenu.src = "resources/play_button.png";
+    this.mainMenu.src = "resources/main_menu.png";
     this.left.src = "resources/pointleft.png";
     this.right.src = "resources/pointright.png";
     this.jump.src = "resources/jumpImg.png";
@@ -31,7 +31,7 @@ class Help
   {
     if(this.clickDetection.isClicked())
     {
-      if(this.checkCollisionBetween(this.clickDetection.getPosition(), 1620,800,200,100))
+      if(this.checkCollisionBetween(this.clickDetection.getPosition(), 1620,700,200,200))
       {
         this.clickDetection.reset();
         gameGlobal.menuManager.setCurrentScene("Main Menu");
@@ -67,7 +67,7 @@ class Help
 
   render(ctx)
   {
-    ctx.drawImage(this.mainMenu, 1620,800, 200,100);
+    ctx.drawImage(this.mainMenu, 1620,700, 200,200);
     ctx.drawImage(this.left, 300,500,200,200);
     ctx.drawImage(this.right, 1420,500,200,200);
     ctx.drawImage(this.images[this.i], 600, 100, 600, 600);
