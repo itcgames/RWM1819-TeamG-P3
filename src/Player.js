@@ -175,7 +175,9 @@
           this.y < bullet.y + bullet.texture.height &&
           this.y + this.texture.height > bullet.y)
        {
-         this.hits -= 1;
+
+
+         //this.hits -= 1;
          this.knockeddown = true;
          bullet.active = false;
        }// End if
@@ -195,10 +197,10 @@
           this.y < obstacle.y + obstacle.texture.height &&
           this.y + this.texture.height > obstacle.y)
        {
-         console.log("Collide")
-         /*this.hits -= 1;
+         //console.log("Collide")
+         //this.hits -= 1;
          this.knockeddown = true;
-         this.obstacle.collided = true;*/
+         this.obstacle.collided = true;
 
        }// End if
      }// End if
