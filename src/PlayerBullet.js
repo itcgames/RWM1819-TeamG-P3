@@ -21,11 +21,8 @@
    /*
     *
     */
-   constructor(canvas, context, texture, x, y, velX)
+   constructor(texture, x, y, velX)
    {
-     //
-     this.canvas = canvas;
-     this.context = context;
      //
      this.x = x;
      this.y = y;
@@ -54,11 +51,11 @@
    /*
     *
     */
-   draw()
+   draw(ctx)
    {
      if(this.active === true)
      {
-       this.context.drawImage(this.texture, this.x, this.y, this.texture.width, this.texture.height);
+       ctx.drawImage(this.texture, this.x, this.y, this.texture.width, this.texture.height);
      }
    }
 

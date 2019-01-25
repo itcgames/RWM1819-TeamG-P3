@@ -21,12 +21,8 @@
    /*
     *
     */
-   constructor(canvas, context, texture, bulletTexture, projectile, obstacle)
+   constructor(texture, bulletTexture, projectile, obstacle)
    {
-     //
-     this.canvas = canvas;
-     this.context = context;
-     //
      this.x = 700;
      this.y = 600;
      //
@@ -36,7 +32,7 @@
      this.mainTexture;
      this.texture = texture;
      //
-     this.bullet = new PlayerBullet(this.canvas, this.context, bulletTexture, 50, 250, 12);
+     this.bullet = new PlayerBullet(bulletTexture, 50, 250, 12);
      //
      this.active = true;
      //
@@ -209,12 +205,12 @@
    /*
     *
     */
-   draw()
+   draw(ctx)
    {
      if(this.active === true)
      {
-       this.context.drawImage(this.texture, this.x, this.y, this.texture.width, this.texture.height);
-       this.bullet.draw();
+       ctx.drawImage(this.texture, this.x, this.y, this.texture.width, this.texture.height);
+       this.bullet.draw(ctx);
      }
    }
 

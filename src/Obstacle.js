@@ -21,11 +21,8 @@
    /*
     *
     */
-   constructor(canvas, context, texture, type)
+   constructor(texture, type)
    {
-     //
-     this.canvas = canvas;
-     this.context = context;
      //
      this.x = 0;
      this.y = 0;
@@ -70,19 +67,19 @@
    /*
     *
     */
-   draw()
+   draw(ctx)
    {
      if(this.active === true)
      {
        //
        if(this.type === 1)
        {
-         this.context.drawImage(this.texture, this.x, this.y, this.texture.width - 180, this.texture.height - 150);
+         ctx.drawImage(this.texture, this.x, this.y, this.texture.width - 180, this.texture.height - 150);
        }
        //
        if(this.type === 2)
        {
-         this.context.drawImage(this.texture, this.x, this.y, this.texture.width - 180, this.texture.height - 180);
+        ctx.drawImage(this.texture, this.x, this.y, this.texture.width - 180, this.texture.height - 180);
        }
 
      }

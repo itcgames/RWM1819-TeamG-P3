@@ -19,6 +19,10 @@ class MainMenu
   {
     if(this.clickDetection.isClicked())
     {
+      if(this.checkCollisionBetween(this.clickDetection.getPosition(), 860, 200, 200,100))
+      {
+        gameGlobal.menuManager.setCurrentScene("Play");
+      }
       if(this.checkCollisionBetween(this.clickDetection.getPosition(), 860, 350, 200,100))
       {
         gameGlobal.menuManager.setCurrentScene("Help");
