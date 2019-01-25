@@ -12,7 +12,7 @@ class Options
   {
     if(this.clickDetection.isClicked())
     {
-      if(this.checkCollisionBetween(this.clickDetection.getPosition(), 1000,800,200,100))
+      if(this.checkCollisionBetween(this.clickDetection.getPosition(), 1620,800, 200,100))
       {
         this.clickDetection.reset();
         gameGlobal.menuManager.setCurrentScene("Main Menu");
@@ -22,7 +22,7 @@ class Options
 
   render(ctx)
   {
-    ctx.drawImage(this.mainMenu, 1000,800, 200,100);
+    ctx.drawImage(this.mainMenu, 1620,800, 200,100);
   }
 
   checkCollisionBetween(clickPos, x,y,width,height)

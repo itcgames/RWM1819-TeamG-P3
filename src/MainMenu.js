@@ -19,15 +19,15 @@ class MainMenu
   {
     if(this.clickDetection.isClicked())
     {
-      if(this.checkCollisionBetween(this.clickDetection.getPosition(), 650, 250, 200,100))
+      if(this.checkCollisionBetween(this.clickDetection.getPosition(), 860, 350, 200,100))
       {
         gameGlobal.menuManager.setCurrentScene("Help");
       }
-      if(this.checkCollisionBetween(this.clickDetection.getPosition(), 650, 400, 200,100))
+      if(this.checkCollisionBetween(this.clickDetection.getPosition(), 860, 500, 200,100))
       {
         gameGlobal.menuManager.setCurrentScene("Tutorial");
       }
-      if(this.checkCollisionBetween(this.clickDetection.getPosition(), 650, 550, 200,100))
+      if(this.checkCollisionBetween(this.clickDetection.getPosition(), 860, 650, 200,100))
       {
         gameGlobal.menuManager.setCurrentScene("Options");
       }
@@ -39,10 +39,10 @@ class MainMenu
 
   render(ctx)
   {
-    ctx.drawImage(this.play, 650, 200, 200, 100);
-    ctx.drawImage(this.howToPlay, 650, 350, 200, 100);
-    ctx.drawImage(this.tutorial, 650, 500, 200, 100);
-    ctx.drawImage(this.options, 650, 650, 200, 100);
+    ctx.drawImage(this.play, 860, 200, 200, 100);
+    ctx.drawImage(this.howToPlay, 860, 350, 200, 100);
+    ctx.drawImage(this.tutorial, 860, 500, 200, 100);
+    ctx.drawImage(this.options, 860, 650, 200, 100);
   }
 
   checkCollisionBetween(clickPos, x,y,width,height)
