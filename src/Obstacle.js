@@ -34,7 +34,6 @@
      this.type = type;
      //
      this.active = true;
-     this.collided = false;
      //
      this.setValues();
    }
@@ -106,30 +105,6 @@
      }
      //
      this.active = true;
-   }
-
-   /*
-    *
-    */
-   resetPosition(x, y, active)
-   {
-     //
-     if(this.type === 1)
-     {
-
-     }
-     //
-     else if(this.type === 2)
-     {
-
-     }
-     //
-     else if (this.type === 3)
-     {
-
-     }
-
-     this.active = active;
    }
 
    resetX()

@@ -73,7 +73,15 @@
    {
      if(this.active === true)
      {
-       ctx.drawImage(this.texture, this.x, this.y, this.texture.width, this.texture.height);
+       if(this.type === 1 || this.type === 2)
+       {
+         ctx.drawImage(this.texture, this.x, this.y, this.texture.width, this.texture.height);
+       }
+
+       if(this.type === 3 || this.type === 4)
+       {
+         ctx.drawImage(this.texture, this.x, this.y, this.texture.width - 190, this.texture.height - 190);
+       }
      }
    }
 
@@ -134,7 +142,7 @@
      {
        //
        this.x = 1960;
-       this.y = 575;
+       this.y = 600;
        //
        this.velX = -10;
        this.velY = 0;
@@ -148,7 +156,7 @@
      {
        //
        this.x = -60;
-       this.y = 575;
+       this.y = 600;
        //
        this.velX = 10;
        this.velY = 0;
@@ -164,7 +172,7 @@
        this.x = 1980;
        this.y = 225;
        //
-       this.velX = -8;
+       this.velX = -10;
        this.velY = -9;
        //
        this.applyVel = true;
@@ -178,7 +186,7 @@
        this.x = 2000;
        this.y = 190;
        //
-       this.velX = -8;
+       this.velX = -10;
        this.velY = -9;
        //
        this.applyVel = true;

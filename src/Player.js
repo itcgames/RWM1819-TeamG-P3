@@ -21,7 +21,7 @@
    /*
     *
     */
-   constructor(texture, bulletTexture, projectile, obstacle)
+   constructor(texture, duckingText, blankText, bulletTexture, projectile, obstacle)
    {
      this.x = 680;
      this.y = 600;
@@ -29,8 +29,10 @@
      this.velY = 0;
      this.gravity = 0.5;
      //
-     this.mainTexture;
-     this.texture = texture;
+     this.mainTexture = texture;
+     this.duckingTexture = duckingText;
+     this.blankTexture = blankText;
+     this.texture = this.mainTexture;
      //
      this.bullet = new PlayerBullet(bulletTexture, 50, 250, 12);
      //
@@ -78,6 +80,8 @@
        {
          this.active = false;
        }
+
+       this.score++;
      }
    }
 
@@ -100,18 +104,18 @@
 
      //console.log(that.jumping);
      //
-     if(that.jumping === true)
+     if(this.jumping === true)
      {
        //
-       that.velY += that.gravity;
-       that.y += that.velY;
+       this.velY += this.gravity;
+       this.y += this.velY;
        //
-       if(that.y > 600)
+       if(this.y > 600)
        {
          //
-         that.y = 600;
+         this.y = 600;
          //
-         that.jumping = false;
+         this.jumping = false;
        }
      }
 
@@ -122,9 +126,15 @@
     */
    duck(that)
    {
+     //
      if(that.ducking === true)
      {
-
+       this.texture = this.duckingTexture;
+     }
+     //
+     else
+     {
+       this.texture = this.mainTexture;
      }
    }
 
@@ -139,10 +149,9 @@
      }
 
      // S key is pressed
-     if(event.keyCode === 83 && this.ducking === false)
+     if(event.keyCode === 83)
      {
        this.ducking = true;
-       console.log("S");
      }
      else
      {
@@ -162,20 +171,24 @@
    {
      if(this.active === true && bullet.active === true && this.knockeddown === false && this.ducking === false)
      {
-
-       if(this.x < bullet.x + bullet.texture.width &&
-          this.x + this.texture.width > bullet.x &&
-          this.y < bullet.y + bullet.texture.height &&
-          this.y + this.texture.height > bullet.y)
-       {
-         console.log("Hit!");
-         eventTime = 0;
-         /*this.hits -= 1;
-         this.knockeddown = true;
-         bullet.active = false;*/
-       }// End if
-     }// End if
-   }
+       //
+        if((this.x < bullet.x + (bullet.texture.width - 190) &&
+            this.x + this.texture.width > bullet.x &&
+            this.y < bullet.y + (bullet.texture.height - 190) &&
+            this.y + this.texture.height > bullet.y) ||
+           (this.x < bullet.x + bullet.texture.width &&
+               this.x + this.texture.width > bullet.x &&
+               this.y < bullet.y + bullet.texture.height &&
+               this.y + this.texture.height > bullet.y))
+            {
+              console.log("Hit!");
+              eventTime = 0;
+              this.hits -= 1;
+              this.knockeddown = true;
+              bullet.active = false;
+            }// End if
+        }
+    }
 
    /*
     *
@@ -184,20 +197,22 @@
    {
      if(this.active === true && obstacle.active === true && this.knockeddown === false && this.ducking === false)
      {
-
-       if(this.x < obstacle.x + obstacle.texture.width &&
-          this.x + this.texture.width > obstacle.x &&
-          this.y < obstacle.y + obstacle.texture.height &&
-          this.y + this.texture.height > obstacle.y)
-       {
-         console.log("Collide!")
-         eventTime = 0;
-         /*this.hits -= 1;
-         this.knockeddown = true;
-         this.obstacle.collided = true;*/
-
+        //
+        if((this.x < obstacle.x + (obstacle.texture.width - 180) &&
+            this.x + this.texture.width > obstacle.x &&
+            this.y < obstacle.y + (obstacle.texture.height - 150) &&
+            this.y + this.texture.height > obstacle.y) ||
+            (this.x < obstacle.x + (obstacle.texture.width - 180) &&
+            this.x + this.texture.width > obstacle.x &&
+            this.y < obstacle.y + (obstacle.texture.height -180) &&
+            this.y + this.texture.height > obstacle.y))
+         {
+           console.log("Collide!")
+           eventTime = 0;
+           this.hits -= 1;
+           this.knockeddown = true;
+         }// End if
        }// End if
-     }// End if
    }
 
    /*
@@ -218,6 +233,9 @@
      ctx.fillText("Lives: " + this.hits, 1550, 780);
    }
 
+   /*
+    *
+    */
    iFrames()
    {
      if(this.knockeddown === true)
@@ -225,19 +243,41 @@
        //
        this.invincibilityTime++;
        //
-       this.iFrames++;
+       this.iFrameTime++;
+
+       console.log("Invince Time: " + this.invincibilityTime);
+       console.log("iFrame Time: " + this.iFrameTime);
+
+       if(this.imageType === 1)
+       {
+         this.texture = this.mainTexture;
+       }
+       else if(this.imageType === -1)
+       {
+         this.texture = this.blankTexture;
+       }
+
        //
-       if(this.invincibilityTime >= 100)
+       if(this.invincibilityTime >= 20)
        {
          this.imageType *= -1;
          this.invincibilityTime =0;
-       }
+       }// End if
+
        //
-       if(this.iFrames >= 1000)
+       if(this.iFrameTime >= 125)
        {
-         this.iFrames = 0;
-         this.knockeddown === true;
-       }
+         this.iFrameTime = 0;
+         this.knockeddown = false;
+       }// End if
+     }// End if
+
+
+     else if(this.knockeddown == false)
+     {
+       this.imageType = 1;
+       this.invincibilityTime = 0;
+       this.iFrameTime = 0;
      }
    }
 

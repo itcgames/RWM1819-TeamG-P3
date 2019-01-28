@@ -24,11 +24,26 @@ class Play
     this.playerImg = new Image();
     this.playerImg.src = "resources/images/Player.png";
     //
+    this.duckingImg = new Image();
+    this.duckingImg.src = "resources/images/Playerducking.png";
+    //
+    this.blankImg = new Image();
+    this.blankImg.src = "resources/images/Blankplayer.png";
+    //
     this.bulletImg = new Image();
     this.bulletImg.src = "resources/images/PBullet.png";
     //
     this.projectileImgOne = new Image();
     this.projectileImgOne.src = "resources/images/Bullet.png";
+    //
+    this.arrowImgOne = new Image();
+    this.arrowImgOne.src = "resources/images/Arrowleft.png";
+    //
+    this.arrowImgTwo = new Image();
+    this.arrowImgTwo.src = "resources/images/Arrowright.png";
+    //
+    this.boulderImg = new Image();
+    this.boulderImg.src = "resources/images/Boulder.png"
     //
     this.obstacleImgOne = new Image();
     this.obstacleImgOne.src = "resources/images/Cactus.png";
@@ -43,10 +58,10 @@ class Play
     this.eventTime = 210;
 
     //
-    this.arrow = new EnemyBullet(this.projectileImgOne, 1);
-    this.tomahawk = new EnemyBullet(this.projectileImgOne, 2);
-    this.boulder = new EnemyBullet(this.projectileImgOne, 3);
-    this.boulderTwo = new EnemyBullet(this.projectileImgOne, 4);
+    this.arrow = new EnemyBullet(this.arrowImgOne, 1);
+    this.tomahawk = new EnemyBullet(this.arrowImgTwo, 2);
+    this.boulder = new EnemyBullet(this.boulderImg, 3);
+    this.boulderTwo = new EnemyBullet(this.boulderImg, 4);
     //
     this.projectiles = [this.arrow, this.tomahawk, this.boulder, this.boulderTwo];
     //
@@ -58,7 +73,7 @@ class Play
 
 
 
-    this.player = new Player(this.playerImg, this.bulletImg, this.projectiles[2], this.obstacle);
+    this.player = new Player(this.playerImg, this.duckingImg, this.blankImg, this.bulletImg, this.projectiles[2], this.obstacle);
   }
 
   update()
@@ -105,7 +120,7 @@ class Play
 
 
     this.eventTime--;
-    console.log(this.eventTime);
+    //console.log(this.eventTime);
 
     //
     if(this.eventTime <= 0)
@@ -164,12 +179,6 @@ class Play
     {
       this.player.enemyBulletCollision(this.projectiles[k], this.eventTime);
       this.player.bullet.enemyBulletCollision(this.projectiles[k], this.eventTime);
-
-      //
-      if(this.player.bullet.enemyBulletCollision(this.projectiles[k], this.eventTime) === true)
-      {
-        this.player.addScore(100);
-      }
     }
     //
     for(var l = 0; l < 2; l++)
