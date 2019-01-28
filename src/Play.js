@@ -51,11 +51,9 @@ class Play
     this.obstacleImgTwo = new Image();
     this.obstacleImgTwo.src = "resources/images/Chest.png";
     //
-    this.bulletAttack = null;
-    this.eventTime = null;
-
     this.bulletAttack = 1;
     this.eventTime = 210;
+    this.nextEvent = false;
 
     //
     this.arrow = new EnemyBullet(this.arrowImgOne, 1);
@@ -71,16 +69,12 @@ class Play
     //
     this.obstacles = [this.cactus, this.chest];
 
-
-
     this.player = new Player(this.playerImg, this.duckingImg, this.blankImg, this.bulletImg, this.projectiles[2], this.obstacle);
   }
 
   update()
   {
-
-  this.player.update();
-    //gameGlobal.game.obstacle.update();
+    this.player.update();
 
     // One tomahawk Event
     if(this.bulletAttack === 1)
@@ -114,16 +108,23 @@ class Play
       this.obstacles[1].update();
     }
 
-
-
-
-
-
     this.eventTime--;
     //console.log(this.eventTime);
 
     //
-    if(this.eventTime <= 0)
+    for(var k = 0; k < 4; k++)
+    {
+      this.player.enemyBulletCollision(this.projectiles[k], this.nextEvent);
+      this.player.bullet.enemyBulletCollision(this.projectiles[k], this.nextEvent);
+    }
+    //
+    for(var l = 0; l < 2; l++)
+    {
+      this.player.obstacleCollision(this.obstacles[l], this.nextEvent);
+    }
+
+    //
+    if(this.eventTime <= 0 || this.nextEvent === true)
     {
       this.bulletAttack = Math.floor((Math.random() * 6) + 1);
 
@@ -159,7 +160,7 @@ class Play
       // One arrow and boulder Event
       if(this.bulletAttack === 4)
       {
-        this.eventTime = 210;
+        this.eventTime = 190;
       }
       // One cactus Event
       if(this.bulletAttack === 5)
@@ -171,20 +172,10 @@ class Play
       {
         this.eventTime = 250;
       }
+
+      this.nextEvent = false;
     }
 
-
-    //
-    for(var k = 0; k < 4; k++)
-    {
-      this.player.enemyBulletCollision(this.projectiles[k], this.eventTime);
-      this.player.bullet.enemyBulletCollision(this.projectiles[k], this.eventTime);
-    }
-    //
-    for(var l = 0; l < 2; l++)
-    {
-      this.player.obstacleCollision(this.obstacles[l], this.eventTime);
-    }
   }
 
   render(ctx)

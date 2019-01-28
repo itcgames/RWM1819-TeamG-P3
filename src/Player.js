@@ -167,7 +167,7 @@
      }
    }
 
-   enemyBulletCollision(bullet, eventTime)
+   enemyBulletCollision(bullet, nextEvent)
    {
      if(this.active === true && bullet.active === true && this.knockeddown === false && this.ducking === false)
      {
@@ -182,7 +182,7 @@
                this.y + this.texture.height > bullet.y))
             {
               console.log("Hit!");
-              eventTime = 0;
+              nextEvent = true;
               this.hits -= 1;
               this.knockeddown = true;
               bullet.active = false;
@@ -193,7 +193,7 @@
    /*
     *
     */
-   obstacleCollision(obstacle, eventTime)
+   obstacleCollision(obstacle, nextEvent)
    {
      if(this.active === true && obstacle.active === true && this.knockeddown === false && this.ducking === false)
      {
@@ -208,7 +208,7 @@
             this.y + this.texture.height > obstacle.y))
          {
            console.log("Collide!")
-           eventTime = 0;
+           eventTime = true;
            this.hits -= 1;
            this.knockeddown = true;
          }// End if
