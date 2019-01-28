@@ -23,7 +23,7 @@
     */
    constructor(texture, duckingText, blankText, bulletTexture, projectile, obstacle)
    {
-     this.x = 680;
+     this.x = 580;
      this.y = 600;
      //
      this.velY = 0;
@@ -83,6 +83,11 @@
 
        this.score++;
      }
+   }
+
+   getHits()
+   {
+     return this.hits;
    }
 
    /*
@@ -208,7 +213,7 @@
             this.y + this.texture.height > obstacle.y))
          {
            console.log("Collide!")
-           eventTime = true;
+           nextEvent = true;
            this.hits -= 1;
            this.knockeddown = true;
          }// End if
@@ -230,7 +235,7 @@
      ctx.fillStyle = "black";
      ctx.font = "30px Verdana";
      ctx.fillText("Score: " + this.score, 50, 780);
-     ctx.fillText("Lives: " + this.hits, 1550, 780);
+     ctx.fillText("Lives: " + this.hits, 1450, 780);
    }
 
    /*
@@ -279,6 +284,11 @@
        this.invincibilityTime = 0;
        this.iFrameTime = 0;
      }
+   }
+
+   setLives(newLives)
+   {
+     this.hits = newLives;
    }
 
  }

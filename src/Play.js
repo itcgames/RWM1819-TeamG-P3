@@ -75,7 +75,11 @@ class Play
   update()
   {
     this.player.update();
-
+    if(this.player.getHits() === 0)
+    {
+      this.initialise();
+      gameGlobal.menuManager.setCurrentScene("Main Menu");
+    }
     // One tomahawk Event
     if(this.bulletAttack === 1)
     {
@@ -139,9 +143,6 @@ class Play
       {
         this.obstacles[j].setValues();
       }
-
-
-
       // One tomahawk Event
       if(this.bulletAttack === 1)
       {
@@ -175,7 +176,6 @@ class Play
 
       this.nextEvent = false;
     }
-
   }
 
   render(ctx)

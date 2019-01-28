@@ -24,7 +24,7 @@ class Options
         gameGlobal.menuManager.setCurrentScene("Main Menu");
       }
 
-      if(this.checkCollisionBetween(this.clickDetection.getPosition(), 1200, 400, 200, 200))
+      if(this.checkCollisionBetween(this.clickDetection.getPosition(), 900, 425, 100, 100))
       {
         console.log("change");
         this.toggleActive();
@@ -46,11 +46,11 @@ class Options
       ctx.fillStyle = this.black;
     }
 
-    ctx.fillRect(1200, 400, 200, 200);
+    ctx.fillRect(900, 425, 100, 100);
 
-    ctx.font = "30px Arial";
+    ctx.font = "70px Arial";
     ctx.fillStyle = this.black;
-    ctx.fillText("Toggle Tips", 1000, 500);
+    ctx.fillText("Toggle Tips", 500, 500);
   }
 
   checkCollisionBetween(clickPos, x,y,width,height)
