@@ -34,7 +34,7 @@
     gameGlobal.menuManager.addScene("Options", new Options());
     gameGlobal.menuManager.addScene("Play", new Play());
 
-    gameGlobal.menuManager.setCurrentScene("Main Menu");
+    gameGlobal.menuManager.setCurrentScene("Licence");
 
     gameGlobal.tutorial = true;
 

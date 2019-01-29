@@ -200,7 +200,7 @@
     */
    obstacleCollision(obstacle, nextEvent)
    {
-     if(this.active === true && obstacle.active === true && this.knockeddown === false && this.ducking === false)
+     if(this.active === true && obstacle.active === true && this.knockeddown === false)
      {
         //
         if((this.x < obstacle.x + (obstacle.texture.width - 180) &&
