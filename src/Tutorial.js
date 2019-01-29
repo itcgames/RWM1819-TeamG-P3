@@ -10,6 +10,8 @@ class Tutorial
     //
     this.mainMenu = new Image();
 
+    this.randomTip = new RandomTip(600, 900);
+
     this.mainMenu.src = "resources/main_menu.png";
     this.clickDetection = new ClickDetection();
     this.player = new Player();
@@ -80,6 +82,12 @@ class Tutorial
   {
     this.player.update();
     this.player.setLives(4);
+
+    if(gameGlobal.tutorial === true)
+    {
+      this.randomTip.update();
+    }
+
     if(this.clickDetection.isClicked())
     {
       if(this.checkCollisionBetween(this.clickDetection.getPosition(), 1620,700, 200,200))
@@ -189,6 +197,11 @@ class Tutorial
   render(ctx)
   {
     this.player.draw(ctx);
+
+    if(gameGlobal.tutorial === true)
+    {
+      this.randomTip.draw(ctx);
+    }
 
     //
     for(var i = 0; i < 4; i++)

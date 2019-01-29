@@ -9,6 +9,7 @@ class Play
   {
     //
     this.player = new Player();
+    this.randomTip = new RandomTip(600, 900);
     //
     this.arrow = new EnemyBullet();
     this.tomahawk = new EnemyBullet();
@@ -75,6 +76,11 @@ class Play
   update()
   {
     this.player.update();
+
+    if(gameGlobal.tutorial === true)
+    {
+      this.randomTip.update();
+    }
     if(this.player.getHits() === 0)
     {
       this.initialise();
@@ -181,6 +187,11 @@ class Play
   render(ctx)
   {
     this.player.draw(ctx);
+
+    if(gameGlobal.tutorial === true)
+    {
+      this.randomTip.draw(ctx);
+    }
 
     //
     for(var i = 0; i < 4; i++)

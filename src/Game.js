@@ -36,7 +36,7 @@
 
     gameGlobal.menuManager.setCurrentScene("Main Menu");
 
-    gameGlobal.tutorial;
+    gameGlobal.tutorial = true;
 
    }
 

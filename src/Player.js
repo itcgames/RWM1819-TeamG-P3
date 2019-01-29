@@ -234,7 +234,7 @@
 
      ctx.fillStyle = "black";
      ctx.font = "30px Verdana";
-     ctx.fillText("Score: " + this.score, 50, 780);
+     ctx.fillText("Score: " + this.score, 100, 780);
      ctx.fillText("Lives: " + this.hits, 1450, 780);
    }
 
